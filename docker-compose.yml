@@ -1,0 +1,22 @@
+version: '3'
+services:
+  prometheus-slurm-exporter:
+    build: .
+    volumes:
+      - "/usr/bin/sdiag:/usr/bin/sdiag"
+      - "/usr/bin/sinfo:/usr/bin/sinfo"
+      - "/usr/bin/squeue:/usr/bin/squeue"
+      - "/etc/slurm:/etc/slurm:ro"
+      - "/usr/lib/slurm:/usr/lib/slurm:ro"
+      - "/etc/munge:/etc/munge:ro"
+      - "/etc/hosts:/etc/hosts:ro"
+    ports:
+      - 8080:8080
+    networks:
+      - foo
+networks:
+  foo:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.11.1/22
