@@ -2,6 +2,7 @@ version: '3'
 services:
   prometheus-slurm-exporter:
     build: .
+    image: dholt/prometheus-slurm-exporter:18.02
     volumes:
       - "/usr/bin/sdiag:/usr/bin/sdiag"
       - "/usr/bin/sinfo:/usr/bin/sinfo"
