@@ -8,7 +8,7 @@ services:
       - "/usr/bin/squeue:/usr/bin/squeue"
       - "/etc/slurm:/etc/slurm:ro"
       - "/usr/lib/slurm:/usr/lib/slurm:ro"
-      - "/etc/munge:/etc/munge:ro"
+      - "/var/run/munge:/var/run/munge:ro"
       - "/etc/hosts:/etc/hosts:ro"
     ports:
       - 8080:8080
