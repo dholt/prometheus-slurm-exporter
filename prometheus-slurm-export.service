@@ -1,5 +1,5 @@
 [Unit]
-Description=Redis Container
+Description=Prometheus Slurm Exporter
 After=docker.service
 Requires=docker.service
  
@@ -8,8 +8,8 @@ TimeoutStartSec=0
 Restart=always
 ExecStartPre=-/usr/bin/docker stop %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull redis
-ExecStart=/usr/bin/docker run --rm --name %n redis
+ExecStartPre=/usr/bin/docker pull dholt/prometheus-slurm-exporter
+ExecStart=/usr/bin/docker run --rm --name %n prometheus-slurm-exporter
  
 [Install]
 WantedBy=multi-user.target
