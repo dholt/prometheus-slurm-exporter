@@ -1,8 +1,8 @@
 version: '3'
 services:
-  prometheus-slurm-exporter:
+  slurm_exporter:
     build: .
-    image: dholt/prometheus-slurm-exporter:18.02
+    image: dholt/prometheus-slurm-exporter:latest
     volumes:
       - "/usr/bin/sdiag:/usr/bin/sdiag"
       - "/usr/bin/sinfo:/usr/bin/sinfo"
@@ -14,10 +14,13 @@ services:
     ports:
       - 8080:8080
     networks:
-      - foo
+      - default
+  prometheus:
+    build: prometheus
+    ports:
+      - 9090:9090
+    networks:
+      - default
 networks:
-  foo:
-    ipam:
-      driver: default
-      config:
-        - subnet: 10.10.11.1/22
+  default:
+    driver: bridge
